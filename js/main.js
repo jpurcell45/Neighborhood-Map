@@ -33,11 +33,22 @@ function initMap() {
   });
   //Push the created marker to the global marker array
   markers.push(marker);
-  }
+
 //Open the specific infowindow on click
   marker.addListener('click', function() {
     populateInfoWindow(this, myInfoWindow);
   });
+}
+  function populateInfoWindow(marker, infowindow) {
+//Check if an infowindow is open, if not proceed
+    if (window.marker !== marker) {
+      infowindow.marker = marker;
+//Insert the name of the place into the infowindow
+      infowindow.setContent('<div>' + marker.title + '</div>');
+//Open the infowindow on the map anchored to the marker
+      infowindow.open(map, marker);
+      }
+    }
 
-
+//This is the init closure
 }
