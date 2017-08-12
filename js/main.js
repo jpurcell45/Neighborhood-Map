@@ -49,6 +49,17 @@ function initMap() {
       infowindow.open(map, marker);
       }
     }
-
+    //Make marker bounce on click mostly from Google Maps API.
+        marker.addListener('click', function() {
+          toggleBounce(this);
+        });
+    //toggleBounce function.
+        function toggleBounce(marker) {
+          if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
+          } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+          }
+        }
 //This is the init closure
 }
