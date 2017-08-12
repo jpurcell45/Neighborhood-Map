@@ -61,5 +61,18 @@ function initMap() {
             marker.setAnimation(google.maps.Animation.BOUNCE);
           }
         }
+
 //This is the init closure
 }
+function AppViewModel() {
+    var self = this;
+
+  self.locationList = ko.observableArray ([
+    { title: 'Brasserie Four'},
+    { title: 'Whitehouse-Crawford'},
+    { title: 'Saffron Mediterranean Kitchen'},
+    { title: 'Graze'},
+    { title: 'Gramercy Cellars'}
+  ]);}
+
+ko.applyBindings(new AppViewModel());

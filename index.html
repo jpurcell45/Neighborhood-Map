@@ -8,10 +8,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
-    <title>WallaWalla</title>
+    <title>Walla Walla</title>
   </head>
-  <body>
-    <div id="map"></div>
+  <body class="container-fluid">
+    <div id = "topmenubar" class = "row">Hello</div>
+    <div class = "row">
+      <div class = col-3>
+    <ul id = “location-list” data-bind = “foreach: locationList”>
+	  <li class = “list-items” data-bind = “text:  title”></li>
+    </ul>
+  </div>
+    <div id="map" class = col-9></div>
+    </div>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvO6Jz8yU6n7_IRnrM7ntIEjKL-2QQxd0&callback=initMap">
     </script>
