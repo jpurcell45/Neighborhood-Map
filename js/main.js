@@ -30,7 +30,8 @@ function initMap() {
     title: title,
     animation: google.maps.Animation.DROP,
     id: i
-  });
+    });
+
   //Push the created marker to the global marker array
   markers.push(marker);
 
