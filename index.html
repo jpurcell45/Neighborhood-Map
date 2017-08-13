@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -10,23 +10,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
     <title>Walla Walla</title>
   </head>
-  <body class="container-fluid">
-    <div id = "topmenubar" class = "row">Hello</div>
-    <input id="userinput" type = "text" class = "row">
-    <div class = "row">
-
-      <div class = col-3>
-        <ul id = “location-list” data-bind = “foreach: locationList”>
-	        <li class = “list-items” data-bind = “text:  title”></li>
-        </ul>
+  <body>
+    <div class="container-fluid">
+      <div id = "topmenubar" class = "row">Hello</div>
+      <input id="userinput" type = "text" class = "row">
+      <div class = "row">
+        <div class = col-md-3>
+          <ul id = “location-list” data-bind = “foreach: locationList”>
+	          <li class = “list-items” data-bind = “text:  title”></li>
+          </ul>
+        </div>
+        <div id="map" class = col-md-9></div>
       </div>
-        <div id="map" class = col-9></div>
     </div>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvO6Jz8yU6n7_IRnrM7ntIEjKL-2QQxd0&callback=initMap">
-    </script>
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvO6Jz8yU6n7_IRnrM7ntIEjKL-2QQxd0&callback=initMap">
+    </script>
   </body>
 </html>

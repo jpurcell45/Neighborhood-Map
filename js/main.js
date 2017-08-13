@@ -55,7 +55,7 @@ function initMap() {
           toggleBounce(this);
         });
     //toggleBounce function.
-        function toggleBounce(marker) {
+         function toggleBounce(marker) {
           if (marker.getAnimation() !== null) {
             marker.setAnimation(null);
           } else {
