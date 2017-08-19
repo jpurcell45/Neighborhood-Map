@@ -66,7 +66,19 @@ function initMap() {
             marker.setAnimation(google.maps.Animation.BOUNCE);
           }
         }
+//an array to store all places
+self.allFavPlaces = [];
 
+      favPlaces.forEach(function(place) {
+        self.allFavPlaces(new Place())(place);
+      });
+
+
+self.visibleFavPlaces = ko.observableArray();
+//Monitor search inputs
+self.userInput = ko.observableArray();
+
+var searchInput = self.userInput().toUpperCase;
 //This is the init closure
     }
 
