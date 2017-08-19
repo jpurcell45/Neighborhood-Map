@@ -88,18 +88,23 @@ self.allFavPlaces.forEach(function(place) {
 //This is the init closure
     };
 }
-/*
-  self.locationList = ko.observableArray ([
+
+var locations = [
     { title: 'Brasserie Four'},
     { title: 'Whitehouse-Crawford'},
     { title: 'Saffron Mediterranean Kitchen'},
     { title: 'Graze'},
     { title: 'Gramercy Cellars'}
-  ]);
-*/
-appViewModel = new AppViewModel();
+  ];
+var viewModel = {
+  locations: ko.observableArray(locations)
+};
+ko.applyBindngs(viewModel);
 
-ko.applyBindings(appViewModel);
+
+//appViewModel = new AppViewModel();
+
+//ko.applyBindings(appViewModel);
 //});
 //AJAX request
 //$(document).ready(function(){
