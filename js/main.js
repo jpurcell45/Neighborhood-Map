@@ -1,10 +1,6 @@
 var map;
 //Global variable for markers
 var markers = [];
-//Implement viewmodel.
-var AppViewModel = new AppViewModel();
-
-
 //Initialize map
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -66,6 +62,10 @@ function initMap() {
             marker.setAnimation(google.maps.Animation.BOUNCE);
           }
         }
+//Apply app view model
+var appViewModel = function() {
+
+var self = this;
 //an array to store all places
 self.allFavPlaces = [];
 
@@ -79,9 +79,15 @@ self.visibleFavPlaces = ko.observableArray();
 self.userInput = ko.observableArray();
 
 var searchInput = self.userInput().toUpperCase;
-//This is the init closure
-    }
 
+self.allFavPlaces.forEach(function(place) {
+  place.marker.setVisible(false);
+});
+
+
+//This is the init closure
+    };
+}
 /*
   self.locationList = ko.observableArray ([
     { title: 'Brasserie Four'},
@@ -91,6 +97,7 @@ var searchInput = self.userInput().toUpperCase;
     { title: 'Gramercy Cellars'}
   ]);
 */
+appViewModel = new AppViewModel();
 
 ko.applyBindings(appViewModel);
 //});
