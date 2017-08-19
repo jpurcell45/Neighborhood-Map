@@ -24,6 +24,7 @@ function initMap() {
     //Get name
     var title = favPlaces[i].name;
     //Create marker
+    //var address = from the API foursquare
     var marker = new google.maps.Marker({
     position: position,
     map: map,
@@ -45,15 +46,20 @@ function initMap() {
     if (window.marker !== marker) {
       infowindow.marker = marker;
 //Insert the name of the place into the infowindow
-      infowindow.setContent('<div>' + marker.title + '</div>');
+      infowindow.setContent('<div>' + marker.title + '</div>');//maybe add + marker.contentString
+//try animation set to stop after 5 secs
+      marker.setAnimation(google.maps.Animation.BOUNCE);
+        setTimeout (function() {
+          marker.setAnimation(null);
+        }, 5000);
 //Open the infowindow on the map anchored to the marker
       infowindow.open(map, marker);
       }
     }
     //Make marker bounce on click mostly from Google Maps API.
-        marker.addListener('click', function() {
-          toggleBounce(this);
-        });
+        //marker.addListener('click', function() {
+          //toggleBounce(this);
+        //});
     //toggleBounce function.
          function toggleBounce(marker) {
           if (marker.getAnimation() !== null) {
@@ -99,7 +105,10 @@ var locations = [
 var viewModel = {
   locations: ko.observableArray(locations)
 };
+
 ko.applyBindngs(viewModel);
+
+viewModel.locations();
 
 
 //appViewModel = new AppViewModel();
@@ -119,5 +128,15 @@ $.ajax({
   '&client_id=U1Y4IIWY4GNNZ0MWADGNUSGR2TW0U2NN0EVZOIHBLKCIXABW',
   '&client_secret=U1Y4IIWY4GNNZ0MWADGNUSGR2TW0U2NN0EVZOIHBLKCIXABW',
   '&v=20170814',
+
+
+    success: function(data) {
+    venue = data.response.venues[0];
+
+    address = venue.location.formattedAddress[0];
+    },
+    error: function() {
+    window.alert("Data from foursquare failed to load.");
+    }
 });
 */
