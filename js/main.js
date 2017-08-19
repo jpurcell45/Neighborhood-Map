@@ -1,6 +1,10 @@
 var map;
 //Global variable for markers
 var markers = [];
+//Implement viewmodel.
+var AppViewModel = function() {
+
+
 //Initialize map
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -64,10 +68,9 @@ function initMap() {
         }
 
 //This is the init closure
+    }
 }
-function AppViewModel() {
-    var self = this;
-
+/*
   self.locationList = ko.observableArray ([
     { title: 'Brasserie Four'},
     { title: 'Whitehouse-Crawford'},
@@ -75,7 +78,7 @@ function AppViewModel() {
     { title: 'Graze'},
     { title: 'Gramercy Cellars'}
   ]);
-}
+*/
 
 ko.applyBindings(new AppViewModel());
 //});
