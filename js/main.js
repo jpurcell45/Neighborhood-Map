@@ -2,7 +2,7 @@ var map;
 //Global variable for markers
 var markers = [];
 //Implement viewmodel.
-var AppViewModel = function() {
+var AppViewModel = new AppViewModel();
 
 
 //Initialize map
@@ -69,7 +69,7 @@ function initMap() {
 
 //This is the init closure
     }
-}
+
 /*
   self.locationList = ko.observableArray ([
     { title: 'Brasserie Four'},
@@ -80,7 +80,7 @@ function initMap() {
   ]);
 */
 
-ko.applyBindings(new AppViewModel());
+ko.applyBindings(appViewModel);
 //});
 //AJAX request
 //$(document).ready(function(){
