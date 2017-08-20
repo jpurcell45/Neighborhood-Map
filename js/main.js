@@ -99,15 +99,15 @@ ko.applyBindings(appViewModel);
 //AJAX request
 //$(document).ready(function(){
 
-/*
+
 $.ajax({
-  url: "https://api.foursquare.com/v2/venues/search?",
+  url: "https://api.foursquare.com/v2/venues/search",
   dataType: "json",
-  data: "limit=1" +
-  '&ll = 46.066612, -118.33807' +
-  '&query= address',
-  '&client_id=U1Y4IIWY4GNNZ0MWADGNUSGR2TW0U2NN0EVZOIHBLKCIXABW',
-  '&client_secret=U1Y4IIWY4GNNZ0MWADGNUSGR2TW0U2NN0EVZOIHBLKCIXABW',
-  '&v=20170814',
+  data: {
+  near: 'Walla Walla',
+  query: 'resteraunt',
+  client_id:'U1Y4IIWY4GNNZ0MWADGNUSGR2TW0U2NN0EVZOIHBLKCIXABW',
+  client_secret:'TYVKI2AHL3PRDLU4SPYROMJWZJ1QUHM3MRCFRM2SP3FWMJPI',
+  v: 20170814
+  }
 });
-*/
