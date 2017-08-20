@@ -105,7 +105,7 @@ $.ajax({
   dataType: "json",
   data: {
   near: 'Walla Walla',
-  query: 'resteraunt',
+  query: 'restaurant',
   client_id:'U1Y4IIWY4GNNZ0MWADGNUSGR2TW0U2NN0EVZOIHBLKCIXABW',
   client_secret:'TYVKI2AHL3PRDLU4SPYROMJWZJ1QUHM3MRCFRM2SP3FWMJPI',
   v: 20170814
