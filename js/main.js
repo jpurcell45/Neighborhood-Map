@@ -1,8 +1,8 @@
 var map;
 //Global variable for markers
-var markers = [];
+
 //Implement viewmodel.
-var AppViewModel = new AppViewModel();
+var appViewModel;
 
 
 //Initialize map
@@ -11,6 +11,7 @@ function initMap() {
     zoom: 14,
     center: {lat: 46.0645809, lng: -118.3430209}
   });
+  var markers = [];
 //Add infowindow
   var myInfoWindow = new google.maps.InfoWindow();
 //An array of favorite places with locations
@@ -43,6 +44,10 @@ function initMap() {
   marker.addListener('click', function() {
     populateInfoWindow(this, myInfoWindow);
   });
+  //Make marker bounce on click mostly from Google Maps API.
+  marker.addListener('click', function(marker, i) {
+    toggleBounce(marker);
+        });
 }
   function populateInfoWindow(marker, infowindow) {
 //Check if an infowindow is open, if not proceed
@@ -50,14 +55,14 @@ function initMap() {
       infowindow.marker = marker;
 //Insert the name of the place into the infowindow
       infowindow.setContent('<div>' + marker.title + '</div>');
+//BOUNCE
+      marker.setAnimation(google.maps.Animation.BOUNCE);
+
 //Open the infowindow on the map anchored to the marker
       infowindow.open(map, marker);
       }
     }
-    //Make marker bounce on click mostly from Google Maps API.
-        marker.addListener('click', function() {
-          toggleBounce(this);
-        });
+    /*
     //toggleBounce function.
          function toggleBounce(marker) {
           if (marker.getAnimation() !== null) {
@@ -66,12 +71,13 @@ function initMap() {
             marker.setAnimation(google.maps.Animation.BOUNCE);
           }
         }
+        */
 //an array to store all places
-self.allFavPlaces = [];
+//self.allFavPlaces = [];
 
-      favPlaces.forEach(function(place) {
-        self.allFavPlaces(new Place())(place);
-      });
+      //favPlaces.forEach(function(name) {
+        //self.allFavPlaces(new Place())(name);
+      //});
 
 
 self.visibleFavPlaces = ko.observableArray();
@@ -83,6 +89,7 @@ var searchInput = self.userInput().toUpperCase;
 
 //This is the init closure
     }
+
 
 /*
   self.locationList = ko.observableArray ([
@@ -105,9 +112,12 @@ $.ajax({
   dataType: "json",
   data: {
   near: 'Walla Walla',
-  query: 'restaurant',
+  query: 'winery',
   client_id:'U1Y4IIWY4GNNZ0MWADGNUSGR2TW0U2NN0EVZOIHBLKCIXABW',
   client_secret:'TYVKI2AHL3PRDLU4SPYROMJWZJ1QUHM3MRCFRM2SP3FWMJPI',
   v: 20170814
+  },
+  success: function(data) {
+  console.log(data);
   }
 });
