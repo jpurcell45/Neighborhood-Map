@@ -44,10 +44,7 @@ function initMap() {
   marker.addListener('click', function() {
     populateInfoWindow(this, myInfoWindow);
   });
-  //Make marker bounce on click mostly from Google Maps API.
-  marker.addListener('click', function(marker, i) {
-    toggleBounce(marker);
-        });
+
 }
   function populateInfoWindow(marker, infowindow) {
 //Check if an infowindow is open, if not proceed
@@ -57,21 +54,14 @@ function initMap() {
       infowindow.setContent('<div>' + marker.title + '</div>');
 //BOUNCE
       marker.setAnimation(google.maps.Animation.BOUNCE);
-
+      setTimeout(function(){
+        marker.setAnimation(null);
+      }, 3000);
 //Open the infowindow on the map anchored to the marker
       infowindow.open(map, marker);
       }
     }
-    /*
-    //toggleBounce function.
-         function toggleBounce(marker) {
-          if (marker.getAnimation() !== null) {
-            marker.setAnimation(null);
-          } else {
-            marker.setAnimation(google.maps.Animation.BOUNCE);
-          }
-        }
-        */
+  
 //an array to store all places
 //self.allFavPlaces = [];
 
