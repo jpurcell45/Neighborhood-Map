@@ -106,7 +106,7 @@ var viewModel = {
   locations: ko.observableArray(locations)
 };
 
-ko.applyBindngs(viewModel);
+ko.applyBindings(viewModel);
 
 viewModel.locations();
 
