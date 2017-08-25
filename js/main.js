@@ -1,13 +1,13 @@
 var map;
 
-//Places with foursquare id
-    var locations = [
-        { title: 'Brasserie Four', fsid: '4b7c923ff964a520af9b2fe3'},
-        { title: 'Whitehouse-Crawford', fsid: '4b63ec49f964a52045972ae3'},
-        { title: 'Saffron Mediterranean Kitchen', fsid: '4b63e8d6f964a520b4962ae3'},
-        { title: 'Graze', fsid: '4db2325504374b3c49722dde'},
-        { title: 'Gramercy Cellars', fsid: '4da0a2abb521224bd070e1ed'}
-      ];
+var locations = [
+  //Places with foursquare i[
+          { name: 'Brasserie Four', fsid: '4b7c923ff964a520af9b2fe3'},
+          { name: 'Whitehouse-Crawford', fsid: '4b63ec49f964a52045972ae3'},
+          { name: 'Saffron Mediterranean Kitchen', fsid: '4b63e8d6f964a520b4962ae3'},
+          { name: 'Graze', fsid: '4db2325504374b3c49722dde'},
+          { name: 'Gramercy Cellars', fsid: '4da0a2abb521224bd070e1ed'}
+        ];
 
 var test = "testing123";
 
@@ -76,7 +76,10 @@ function initMap() {
       var self= this;
 
 
+
+
     };
+
 //an array to store all places
 //self.allLocations = [];
 

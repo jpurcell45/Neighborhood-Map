@@ -15,8 +15,8 @@
       <input type="search" id="userinput" placeholder="Search" data-bind="textInput: userInput" class = "row col-3">
       <div class = "row">
         <div class = col-md-3>
-          <ul id = “location-list” data-bind = “text: test”>
-	          <li class = “list-items” data-bind = “text:  test”></li>
+          <ul id = “location-list” data-bind = “foreach: locations()”>
+	          <li class = “list-items” data-bind = "text: name"></li>
           </ul>
         </div>
         <div id="map" class = col-md-9></div>
