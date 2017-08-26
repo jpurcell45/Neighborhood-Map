@@ -15,12 +15,12 @@
       <input type="search" id="userinput" placeholder="Search" data-bind="textInput: userInput" class = "row col-3">
       <div class = "row">
         <div class = col-md-3>
-          <ul id = “location-list” data-bind = “foreach: locations()”>
+          <ul id = “location-list” data-bind = “foreach: locations”>
 	          <li class = “list-items” data-bind = "text: name"></li>
           </ul>
         </div>
         <div id="map" class = col-md-9></div>
-        <div class = "row" data-bind= "text: test" class = col-md-12></div>
+        <div class = "row" data-bind=  "text: test" class = col-md-12></div>
       </div>
     </div>
     <script srd="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

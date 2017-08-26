@@ -11,6 +11,7 @@ var locations = [
 
 var test = "testing123";
 
+//var array = [Tom, Dick, Harry];
 //Initialize map
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -109,7 +110,12 @@ $.ajax({
   v: 20170814
   },
   success: function(data) {
-  console.log(data);
+  //console.log(data);
+  venue = data.response.venues[0];
+  //get the addresses
+  address = venue.location.formattedAddress[0];
+  console.log(address);
+
   }
 });
 ko.applyBindings(new AppViewModel());
