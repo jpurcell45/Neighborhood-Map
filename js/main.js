@@ -59,6 +59,7 @@ function initMap() {
       infowindow.marker = marker;
 //Insert the name of the place into the infowindow
       infowindow.setContent('<div>' + marker.title + '</div>');
+      //infowindow.setContent(contentString);
 //BOUNCE
       marker.setAnimation(google.maps.Animation.BOUNCE);
       setTimeout(function(){
@@ -115,7 +116,13 @@ $.ajax({
   //get the addresses
   address = venue.location.formattedAddress[0];
   console.log(address);
-
+  //add the content to the InfoWindow
+  contentString = "<div class='address'>" + 'Address: '+ "<span class='info'> " + address + "</span></div>";
+  //contentString="hello hello";
+  },
+  //handle error
+  error: function() {
+    window.alert("Sorry information not availablle from foursquare, try again later.");
   }
 });
 ko.applyBindings(new AppViewModel());
