@@ -76,23 +76,32 @@ function initMap() {
     //Implement viewmodel.
     var AppViewModel = function() {
       var self= this;
+      self.myCafes = ko.observableArray(locations);
+
+      //an array to store all places
+      self.allLocations = [];
+
+            //allLocations.forEach(function(title) {
+              //self.allLocations(new Location())(title);
+            //});
+      self.visibleLocations = ko.observableArray();
+      //Monitor search inputs
+      self.userInput = ko.observable("");
 
 
+      self.searchResults = ko.computed(function() {
+        var searchInput = self.userInput().toUpperCase();
+        console.log(searchInput);
+        if (!searchInput){
+          return self.myCafes();
+        }else{
+          return [];
+        }
 
+      });
 
     };
 
-//an array to store all places
-//self.allLocations = [];
-
-      //allLocations.forEach(function(title) {
-        //self.allLocations(new Location())(title);
-      //});
-self.visibleLocations = ko.observableArray();
-//Monitor search inputs
-self.userInput = ko.observableArray();
-
-var searchInput = self.userInput().toUpperCase;
 
 
 //});
