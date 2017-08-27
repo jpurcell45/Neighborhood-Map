@@ -1,5 +1,5 @@
 var map;
-
+/*jshint loopfunc: true */
 var locations = [
   //Places with foursquare i[
           { name: 'Brasserie Four', fsid: '4b7c923ff964a520af9b2fe3'},
@@ -11,14 +11,13 @@ var locations = [
 
 var test = "testing123";
 
-//var array = [Tom, Dick, Harry];
 //Initialize map
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 14,
     center: {lat: 46.0645809, lng: -118.3430209}
   });
-  var markers = [];
+var markers = [];
 //Add infowindow
   var myInfoWindow = new google.maps.InfoWindow();
 //An array of favorite places with locations
@@ -60,7 +59,7 @@ function initMap() {
 //Insert the name of the place into the infowindow
       infowindow.setContent('<div>' + marker.title + '</div>');
       //infowindow.setContent(contentString);
-//BOUNCE
+//BOUNCE and timeout in 3 seconds
       marker.setAnimation(google.maps.Animation.BOUNCE);
       setTimeout(function(){
         marker.setAnimation(null);
@@ -69,16 +68,19 @@ function initMap() {
       infowindow.open(map, marker);
       }
     }
-    //This is the init closure
+//This is the map init closure
   }
-
-
-    //Implement viewmodel.
+  //handle error from google map
+  function error() {
+    window.alert("There was an error retrieving the map from Google");
+  }
+//Implement viewmodel.
     var AppViewModel = function() {
       var self= this;
+
       self.myCafes = ko.observableArray(locations);
 
-      //an array to store all places
+//an array to store all places
       self.allLocations = [];
 
             //allLocations.forEach(function(title) {
@@ -94,8 +96,15 @@ function initMap() {
         console.log(searchInput);
         if (!searchInput){
           return self.myCafes();
-        }else{
-          return [];
+        }
+        else {
+          //change names of locations to upper case
+          self.myCafes.name.toUpperCase();
+          //return items matching searchInput
+          return ko.utils.arrayFilter(self.myCafes(), function(myCafe) {
+              return self.myCafes.indexOf(searchInput) > -1;
+          });
+
         }
 
       });
@@ -112,6 +121,7 @@ function initMap() {
 $.ajax({
   url: "https://api.foursquare.com/v2/venues/search",
   dataType: "json",
+  async: true,
   data: {
   near: 'Walla Walla',
   query: 'winery',
@@ -120,7 +130,7 @@ $.ajax({
   v: 20170814
   },
   success: function(data) {
-  //console.log(data);
+  console.log(data);
   venue = data.response.venues[0];
   //get the addresses
   address = venue.location.formattedAddress[0];
