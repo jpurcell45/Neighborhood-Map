@@ -98,11 +98,13 @@ var markers = [];
           return self.myCafes();
         }
         else {
-          //change names of locations to upper case
+          //change names of locations to upper case for case sensitive search
           self.myCafes.name.toUpperCase();
+          var myCafes = self.myCafes();
           //return items matching searchInput
-          return ko.utils.arrayFilter(self.myCafes(), function(myCafe) {
-              return self.myCafes.indexOf(searchInput) > -1;
+          return ko.utils.arrayFilter(self.myCafes(), function(location) {
+            var cafeName = location.name;
+              return (cafeName.toUpperCase().indexOf(searchInput) > -1);
           });
 
         }
@@ -116,15 +118,23 @@ var markers = [];
 //});
 //AJAX request
 //$(document).ready(function(){
-
+var ll = [
+'46.066612,-118.33807',
+'46.0686515,-118.3421814',
+'46.0648235,-118.3408598',
+'46.0677724,-118.3366146',
+'46.0670125,-118.3569582'
+];
 
 $.ajax({
   url: "https://api.foursquare.com/v2/venues/search",
   dataType: "json",
   async: true,
   data: {
-  near: 'Walla Walla',
-  query: 'winery',
+  ll: ll[0],
+  limit: '5',
+  //near: 'Walla Walla',
+  query: locations.name,
   client_id:'U1Y4IIWY4GNNZ0MWADGNUSGR2TW0U2NN0EVZOIHBLKCIXABW',
   client_secret:'TYVKI2AHL3PRDLU4SPYROMJWZJ1QUHM3MRCFRM2SP3FWMJPI',
   v: 20170814
