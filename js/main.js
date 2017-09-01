@@ -1,3 +1,4 @@
+var AppViewModel;
 var map;
 /*jshint loopfunc: true */
 var locations = [
@@ -39,66 +40,77 @@ var favPlaces = [
         animation: google.maps.Animation.DROP,
         id: i
       });
-
-  //Push the created marker to the global marker array
+    //Put marker in the place object
+    //AppViewModel.myCafes()[i].marker = marker;
+    //Push the created marker to the global marker array
     markers.push(marker);
 
-//Open the specific infowindow on click
+    //Open the specific infowindow on click
     marker.addListener('click', function() {
       populateInfoWindow(this, myInfoWindow);
     });
   }
   function populateInfoWindow(marker, infowindow) {
-//Check if an infowindow is open, if not proceed
+    //Check if an infowindow is open, if not proceed
     if (window.marker !== marker) {
       infowindow.marker = marker;
-//Insert the name of the place into the infowindow
-      infowindow.setContent('<div>' + marker.title + '</div>');
+      //Insert the name of the place into the infowindow
+      infowindow.setContent('<div>' + marker.title + '</div>' + contentString);
       //infowindow.setContent(contentString);
-//BOUNCE and timeout in 3 seconds
+      //BOUNCE and timeout in 3 seconds
       marker.setAnimation(google.maps.Animation.BOUNCE);
       setTimeout(function(){
         marker.setAnimation(null);
       }, 3000);
-//Open the infowindow on the map anchored to the marker
+      //Open the infowindow on the map anchored to the marker
       infowindow.open(map, marker);
       }
     }
-//This is the map init closure
+  //This is the map init closure
   }
   //handle error from google map
   function error() {
     window.alert("There was an error retrieving the map from Google");
   }
-//Implement viewmodel.
+    //Implement viewmodel.
     var AppViewModel = function() {
       var self= this;
 
       self.myCafes = ko.observableArray(locations);
 
-//an array to store all places
-      self.allLocations = [];
+      //an array to store all places
+      //self.allLocations = [];
 
             //allLocations.forEach(function(title) {
               //self.allLocations(new Location())(title);
             //});
-      self.visibleLocations = ko.observableArray();
+      //self.visibleLocations = ko.observableArray();
       //Monitor search inputs
       self.userInput = ko.observable("");
-
-//Function to display in the list view if it contains search input
+      //Function to display in the list view if it contains search input
       self.searchResults = ko.computed(function() {
+        //Change use input to upper case to do case sensitive search.
         var searchInput = self.userInput().toUpperCase();
-        console.log(searchInput);
-        if (!searchInput){
+
+        if (!searchInput) {
+          self.myCafes().forEach(function(mycafe) {
+            if (mycafe.marker) {
+              mycafe.marker.setVisible(true);
+            }
+          });
           return self.myCafes();
         }
         else {
-          //change names of locations to upper case for case sensitive search
+//change names of locations to compare against to upper case for case sensitive search
           self.myCafes.name.toUpperCase();
           var myCafes = self.myCafes();
           //return items matching searchInput
           return ko.utils.arrayFilter(self.myCafes(), function(location) {
+            //if (cafeName.toUpperCase().indexOf(searchInput) > -1) {
+              //myCafe.marker.setVisible(true);
+            //} else {
+              //myCafe.marker.setVisible(false);
+            //}
             var cafeName = location.name;
               return (cafeName.toUpperCase().indexOf(searchInput) > -1);
           });
@@ -121,10 +133,11 @@ $.ajax({
   dataType: "json",
   async: true,
   data: {
-  ll: ll[0],
+  //ll: ll[0],
+  llAcc: '10',
   limit: '5',
-  //near: 'Walla Walla',
-  query: locations.name,
+  near: 'Walla Walla',
+  query: 'restaurant',
   client_id:'U1Y4IIWY4GNNZ0MWADGNUSGR2TW0U2NN0EVZOIHBLKCIXABW',
   client_secret:'TYVKI2AHL3PRDLU4SPYROMJWZJ1QUHM3MRCFRM2SP3FWMJPI',
   v: 20170814
