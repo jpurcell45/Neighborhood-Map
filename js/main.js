@@ -41,7 +41,7 @@ var favPlaces = [
         id: i
       });
     //Put marker in the place object
-    //AppViewModel.myCafes()[i].marker = marker;
+    appViewModel.myCafes()[i].marker = marker;
     //Push the created marker to the global marker array
     markers.push(marker);
 
@@ -55,6 +55,7 @@ var favPlaces = [
     if (window.marker !== marker) {
       infowindow.marker = marker;
       //Insert the name of the place into the infowindow
+      var contentString = appViewModel.myCafes()[marker.id].contentString();
       infowindow.setContent('<div>' + marker.title + '</div>' + contentString);
       //infowindow.setContent(contentString);
       //BOUNCE and timeout in 3 seconds
@@ -78,6 +79,10 @@ var favPlaces = [
 
       self.myCafes = ko.observableArray(locations);
 
+      self.myCafes().forEach(function(cafe) {
+        cafe.contentString = ko.observable('');
+        getData(cafe);
+      });
       //an array to store all places
       //self.allLocations = [];
 
@@ -105,14 +110,20 @@ var favPlaces = [
           self.myCafes.name.toUpperCase();
           var myCafes = self.myCafes();
           //return items matching searchInput
-          return ko.utils.arrayFilter(self.myCafes(), function(location) {
+          return ko.utils.arrayFilter(self.myCafes(), function(cafe) {
             //if (cafeName.toUpperCase().indexOf(searchInput) > -1) {
               //myCafe.marker.setVisible(true);
             //} else {
               //myCafe.marker.setVisible(false);
             //}
-            var cafeName = location.name;
-              return (cafeName.toUpperCase().indexOf(searchInput) > -1);
+            var cafeName = cafe.name.toUpperCase();
+
+            var isInName = cafeName.indexOf(searchInput) > -1; //true of false
+
+            if (cafe.marker) {
+              cafe.marker.setVisible(isInName);//true or false
+            }
+              return isInName;
           });
         }
       });
@@ -128,34 +139,34 @@ var ll = [
 '46.0670125,-118.3569582'
 ];
 
+function getData(cafe) {
+
 $.ajax({
-  url: "https://api.foursquare.com/v2/venues/search",
+  url: "https://api.foursquare.com/v2/venues/" + cafe.fsid,
   dataType: "json",
   async: true,
   data: {
-  //ll: ll[0],
-  llAcc: '10',
-  limit: '5',
-  near: 'Walla Walla',
-  query: 'restaurant',
   client_id:'U1Y4IIWY4GNNZ0MWADGNUSGR2TW0U2NN0EVZOIHBLKCIXABW',
   client_secret:'TYVKI2AHL3PRDLU4SPYROMJWZJ1QUHM3MRCFRM2SP3FWMJPI',
   v: 20170814
   },
   success: function(data) {
   console.log(data);
-  venue = data.response.venues[0];
+  var venue = data.response.venue;
+
   //get the addresses
-  address = venue.location.formattedAddress[0];
+  var address = venue.location.formattedAddress[0];
   console.log(address);
   //add the content to the InfoWindow
-  contentString = "<div class='address'>" + 'Address: '+ "<span class='info'> " + address + "</span></div>";
+  var contentString = "<div class='address'>" + 'Address: '+ "<span class='info'> " + address + "</span></div>";
   //contentString="hello hello";
+  cafe.contentString(contentString);
   },
   //handle error
   error: function() {
     window.alert("Sorry information not availablle from foursquare, try again later.");
   }
 });
+}
 var appViewModel = new AppViewModel();
 ko.applyBindings(appViewModel);
