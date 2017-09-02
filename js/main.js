@@ -1,4 +1,4 @@
-
+//Neigborhood Map Project
 var map;
 /*jshint loopfunc: true */
 var locations = [
@@ -27,18 +27,49 @@ var locations = [
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: 14,
-      center: {lat: 46.0645809, lng: -118.3430209}
+      center: {
+        lat: 46.0645809,
+        lng: -118.3430209}
     });
     var markers = [];
     //Add infowindow
     var myInfoWindow = new google.maps.InfoWindow();
     //An array of favorite places with locations
-    var favPlaces = [
-    {name: 'Brasserie Four', location: {lat: 46.066612, lng: -118.33807}},
-    {name: 'Whitehouse-Crawford', location: {lat: 46.0686515, lng: -118.3421814}},
-    {name: 'Saffron Mediterranean Kitchen', location: {lat: 46.0648235, lng: -118.3408598}},
-    {name: 'Graze', location: {lat: 46.0677724, lng: -118.3366146}},
-    {name: 'Gramercy Cellars', location: {lat: 46.0670125, lng: -118.3569582}}
+    var favPlaces = [{
+        name: 'Brasserie Four',
+        location: {
+          lat: 46.066612,
+          lng: -118.33807
+        }
+      },
+      {
+        name: 'Whitehouse-Crawford',
+        location: {
+          lat: 46.0686515,
+          lng: -118.3421814
+        }
+      },
+      {
+        name: 'Saffron Mediterranean Kitchen',
+        location: {
+          lat: 46.0648235,
+          lng: -118.3408598
+        }
+      },
+      {
+        name: 'Graze',
+        location: {
+          lat: 46.0677724,
+          lng: -118.3366146
+        }
+      },
+      {
+        name: 'Gramercy Cellars',
+        location: {
+          lat: 46.0670125,
+          lng: -118.3569582
+        }
+      }
     ];
     //Loop through favPlaces array to make a marker for each
     for (i = 0; i<favPlaces.length; i++) {
@@ -54,11 +85,10 @@ function initMap() {
         animation: google.maps.Animation.DROP,
         id: i
       });
-    //Put marker in the place object
+    //Put marker in the myCafes object
     appViewModel.myCafes()[i].marker = marker;
     //Push the created marker to the global marker array
     markers.push(marker);
-
     //Open the specific infowindow on click
     marker.addListener('click', function() {
       populateInfoWindow(this, myInfoWindow);
@@ -90,50 +120,31 @@ function initMap() {
     //Implement viewmodel.
     var AppViewModel = function() {
       var self= this;
-
+      //Make var locations and ko observableArray
       self.myCafes = ko.observableArray(locations);
-
+      //Iterate through the myCafes object
       self.myCafes().forEach(function(cafe) {
         cafe.contentString = ko.observable('');
         getData(cafe);
       });
-      //an array to store all places
-      //self.allLocations = [];
-
-            //allLocations.forEach(function(title) {
-              //self.allLocations(new Location())(title);
-            //});
-      //self.visibleLocations = ko.observableArray();
-      //Monitor search inputs
+      //Activley watch what the user inputs in the search field
       self.userInput = ko.observable("");
       //Function to display in the list view if it contains search input
       self.searchResults = ko.computed(function() {
-        //Change use input to upper case to do case sensitive search.
+        //Change user input to upper case to do case sensitive search.
         var searchInput = self.userInput().toUpperCase();
-
+        //If no search input display all myCafes
         if (!searchInput) {
-          self.myCafes().forEach(function(mycafe) {
-            if (mycafe.marker) {
-              mycafe.marker.setVisible(true);
-            }
-          });
           return self.myCafes();
         }
         else {
-//change names of locations to compare against to upper case for case sensitive search
+          //change names of locations to compare against to upper case for case sensitive search
           self.myCafes.name.toUpperCase();
           var myCafes = self.myCafes();
           //return items matching searchInput
           return ko.utils.arrayFilter(self.myCafes(), function(cafe) {
-            //if (cafeName.toUpperCase().indexOf(searchInput) > -1) {
-              //myCafe.marker.setVisible(true);
-            //} else {
-              //myCafe.marker.setVisible(false);
-            //}
             var cafeName = cafe.name.toUpperCase();
-
             var isInName = cafeName.indexOf(searchInput) > -1; //true of false
-
             if (cafe.marker) {
               cafe.marker.setVisible(isInName);//true or false
             }
@@ -142,17 +153,14 @@ function initMap() {
         }
       });
     };
-//});
 //AJAX request
-//$(document).ready(function(){
-var ll = [
-'46.066612,-118.33807',
-'46.0686515,-118.3421814',
-'46.0648235,-118.3408598',
-'46.0677724,-118.3366146',
-'46.0670125,-118.3569582'
-];
-
+//var ll = [
+//'46.066612,-118.33807',
+//'46.0686515,-118.3421814',
+//'46.0648235,-118.3408598',
+//'46.0677724,-118.3366146',
+//'46.0670125,-118.3569582'
+//];
 function getData(cafe) {
 
 $.ajax({
@@ -167,16 +175,14 @@ $.ajax({
   success: function(data) {
   console.log(data);
   var venue = data.response.venue;
-
   //get the addresses
   var address = venue.location.formattedAddress[0];
   console.log(address);
   //add the content to the InfoWindow
   var contentString = "<div class='address'>" + 'Address: '+ "<span class='info'> " + address + "</span></div>";
-  //contentString="hello hello";
   cafe.contentString(contentString);
   },
-  //handle error
+  //handle error from foursquare
   error: function() {
     window.alert("Sorry information not availablle from foursquare, try again later.");
   }
