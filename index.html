@@ -11,16 +11,20 @@
   </head>
   <body>
     <div class="container-fluid">
-      <div id = "topmenubar" class = "row col-3">Walla Walla Favorite Places</div>
-      <input type="search" id="userinput" placeholder="Search" data-bind="textInput: userInput" class = "row col-3">
+      <div class= "row">
+        <div id = "topmenubar" class= col-md-3 col-xs-6>Walla Walla Favorite Places</div>
+      </div>
+      <div class= "row">
+        <input type="search" id="userinput" placeholder="Search" data-bind="textInput: userInput" class= col-md-3 col-xs-6>
+      </div>
       <div class = "row">
-        <div class = col-md-3>
-          <ul id = “location-list” data-bind = "foreach: searchResults"
-          >
+        <div class = col-md-3 col-xs-6>
+          <ul id = “location-list” data-bind = "foreach: searchResults">
 	          <li class = “list-items” data-bind = "text: name"></li>
           </ul>
         </div>
-        <div id="map" class = col-md-9></div>        
+      </div>
+        <div id="map" class = col-md-9 col-xs-6></div>
       </div>
     </div>
     <script srd="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
