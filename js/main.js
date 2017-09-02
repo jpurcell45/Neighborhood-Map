@@ -1,4 +1,4 @@
-var AppViewModel;
+
 var map;
 /*jshint loopfunc: true */
 var locations = [
@@ -157,4 +157,5 @@ $.ajax({
     window.alert("Sorry information not availablle from foursquare, try again later.");
   }
 });
-ko.applyBindings(new AppViewModel());
+var appViewModel = new AppViewModel();
+ko.applyBindings(appViewModel);
