@@ -3,36 +3,50 @@ var map;
 /*jshint loopfunc: true */
 var locations = [
   //Places with foursquare i[
-          { name: 'Brasserie Four', fsid: '4b7c923ff964a520af9b2fe3'},
-          { name: 'Whitehouse-Crawford', fsid: '4b63ec49f964a52045972ae3'},
-          { name: 'Saffron Mediterranean Kitchen', fsid: '4b63e8d6f964a520b4962ae3'},
-          { name: 'Graze', fsid: '4db2325504374b3c49722dde'},
-          { name: 'Gramercy Cellars', fsid: '4da0a2abb521224bd070e1ed'}
-        ];
+    {
+      name: 'Brasserie Four',
+      fsid: '4b7c923ff964a520af9b2fe3'
+    },
+    {
+      name: 'Whitehouse-Crawford',
+      fsid: '4b63ec49f964a52045972ae3'
+    },
+    {
+      name: 'Saffron Mediterranean Kitchen',
+      fsid: '4b63e8d6f964a520b4962ae3'
+    },
+    {
+      name: 'Graze',
+      fsid: '4db2325504374b3c49722dde'
+    },
+    {
+      name: 'Gramercy Cellars',
+      fsid: '4da0a2abb521224bd070e1ed'}
+  ];
 //Initialize map
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: 14,
       center: {lat: 46.0645809, lng: -118.3430209}
     });
-var markers = [];
-//Add infowindow
-var myInfoWindow = new google.maps.InfoWindow();
-//An array of favorite places with locations
-var favPlaces = [
+    var markers = [];
+    //Add infowindow
+    var myInfoWindow = new google.maps.InfoWindow();
+    //An array of favorite places with locations
+    var favPlaces = [
     {name: 'Brasserie Four', location: {lat: 46.066612, lng: -118.33807}},
     {name: 'Whitehouse-Crawford', location: {lat: 46.0686515, lng: -118.3421814}},
     {name: 'Saffron Mediterranean Kitchen', location: {lat: 46.0648235, lng: -118.3408598}},
     {name: 'Graze', location: {lat: 46.0677724, lng: -118.3366146}},
     {name: 'Gramercy Cellars', location: {lat: 46.0670125, lng: -118.3569582}}
     ];
-  //Loop through favPlaces array to make a marker for each
+    //Loop through favPlaces array to make a marker for each
     for (i = 0; i<favPlaces.length; i++) {
-    //Get lat lng
+      //Get lat lng
       var position = favPlaces[i].location;
-    //Get name
+      //Get name
       var title = favPlaces[i].name;
-    //Create marker
+      //Create marker
       var marker = new google.maps.Marker({
         position: position,
         map: map,
