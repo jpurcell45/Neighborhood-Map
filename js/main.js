@@ -143,6 +143,12 @@ function initMap() {
           var myCafes = self.myCafes();
           //return items matching searchInput
           return ko.utils.arrayFilter(self.myCafes(), function(cafe) {
+//console.log(cafe.name);
+            //if(cafe.name.toUpperCase().indexOf(searchInput) > -1) {
+              //cafe.marker.setVisible(true);
+            //} else {
+              //cafe.marker.setVisible(false);
+            //}
             var cafeName = cafe.name.toUpperCase();
             var isInName = cafeName.indexOf(searchInput) > -1; //true of false
             if (cafe.marker) {
@@ -154,15 +160,9 @@ function initMap() {
       });
     };
 //AJAX request
-//var ll = [
-//'46.066612,-118.33807',
-//'46.0686515,-118.3421814',
-//'46.0648235,-118.3408598',
-//'46.0677724,-118.3366146',
-//'46.0670125,-118.3569582'
-//];
+
 function getData(cafe) {
-//Info request to foursquare API 
+//Info request to foursquare API
 $.ajax({
   url: "https://api.foursquare.com/v2/venues/" + cafe.fsid,
   dataType: "json",
