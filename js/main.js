@@ -162,7 +162,7 @@ function initMap() {
 //'46.0670125,-118.3569582'
 //];
 function getData(cafe) {
-
+//Info request to foursquare API 
 $.ajax({
   url: "https://api.foursquare.com/v2/venues/" + cafe.fsid,
   dataType: "json",

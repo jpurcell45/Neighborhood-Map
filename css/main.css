@@ -3,6 +3,8 @@
   background: gray;
   height: 40px;
   top: 0;
+  text-align: center;
+  padding-top: 15px;
 }
 
 
@@ -23,7 +25,5 @@ right: 0px;
 }
 
 #location-list {
-
   background-color: gray;
-
 }
