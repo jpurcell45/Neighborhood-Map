@@ -143,7 +143,7 @@ function initMap() {
           var myCafes = self.myCafes();
           //return items matching searchInput
           return ko.utils.arrayFilter(self.myCafes(), function(cafe) {
-//console.log(cafe.name);
+            //console.log(cafe.name);
             //if(cafe.name.toUpperCase().indexOf(searchInput) > -1) {
               //cafe.marker.setVisible(true);
             //} else {
@@ -176,11 +176,11 @@ $.ajax({
   v: 20170814
   },
   success: function(data) {
-  console.log(data);
+  //console.log(data);
   var venue = data.response.venue;
   //get the addresses
   var address = venue.location.formattedAddress[0];
-  console.log(address);
+  //console.log(address);
   //add the content to the InfoWindow
   var contentString = "<div class='address'>" + 'Address: '+ "<span class='info'> " + address + "</span></div>";
   cafe.contentString(contentString);

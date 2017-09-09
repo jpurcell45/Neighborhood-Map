@@ -1,10 +1,11 @@
 #topmenubar {
   position: relative;
-  background: gray;
+  background: white;
   height: 40px;
   top: 0;
   text-align: center;
   padding-top: 15px;
+  list-style-type: none;
 }
 
 
@@ -25,5 +26,5 @@ right: 0px;
 }
 
 #location-list {
-  background-color: gray;
+  background-color: LightCyan;
 }
