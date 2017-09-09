@@ -158,6 +158,9 @@ function initMap() {
           });
         }
       });
+      this.showCafes = function(myCafes) {
+        google.maps.event.trigger(myCafes.marker, 'click');
+      };
     };
 //AJAX request
 

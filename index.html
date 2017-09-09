@@ -11,7 +11,7 @@
     <title>Walla Walla</title>
   </head>
   <body>
-    <div id="wrapper">
+    <div id="wrapper" class="toggled">
       <!-- Sidebar -->
       <div id=sidebar-wrapper>
           <ul class="sidebar-nav">
@@ -19,7 +19,9 @@
               <li><input type="search" id="userinput" placeholder="Search" data-bind="textInput: userInput"></li>
           </ul>
           <ul id = “location-list” data-bind = "foreach: searchResults">
-	          <li class = “list-items” data-bind = "text: name" data-bind= "click: $parent.setAnimation"></li>
+            <button type="button" class="btn btn-default">
+	          <li class=“list-items” data-bind = "text: name, click: $parent.showCafes"></li>
+            </button>
           </ul>
       </div>
       <!-- /#sidebar-wrapper -->
