@@ -180,7 +180,12 @@ $.ajax({
   //console.log(data);
   var venue = data.response.venue;
   //get the addresses
-  var address = venue.location.formattedAddress[0];
+  var address;
+      if (venue.location.formattedAddress !== undefined) {
+        address = venue.location.formattedAddress[0];
+      } else {
+        adress = "Address is not available";
+      }
   //console.log(address);
   //add the content to the InfoWindow
   var contentString = "<div class='address'>" + 'Address: '+ "<span class='info'> " + address + "</span></div>";
