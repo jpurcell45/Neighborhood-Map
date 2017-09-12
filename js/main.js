@@ -115,7 +115,7 @@ function initMap() {
   }
   //handle error from google map
   function error() {
-    window.alert("There was an error retrieving the map from Google");
+    alert("There was an error retrieving the map from Google");
   }
     //Implement viewmodel.
     var AppViewModel = function() {
