@@ -93,7 +93,7 @@ function initMap() {
   //This is the map init closure
   }
   //handle error from google map
-  function error() {
+  function mapError() {
     alert("There was an error retrieving the map from Google");
   }
   var locations = [
@@ -163,6 +163,7 @@ function initMap() {
         google.maps.event.trigger(myCafes.marker, 'click');
       };
     };
+
 //AJAX request
 
 function getData(cafe) {
