@@ -85,7 +85,7 @@ function initMap() {
       marker.setAnimation(google.maps.Animation.BOUNCE);
       setTimeout(function(){
         marker.setAnimation(null);
-      }, 3000);
+      }, 3500);
       //Open the infowindow on the map anchored to the marker
       infowindow.open(map, marker);
       }
@@ -163,40 +163,38 @@ function initMap() {
         google.maps.event.trigger(myCafes.marker, 'click');
       };
     };
-
 //AJAX request
-
 function getData(cafe) {
 //Info request to foursquare API
-$.ajax({
-  url: "https://api.foursquare.com/v2/venues/" + cafe.fsid,
-  dataType: "json",
-  async: true,
-  data: {
-  client_id:'U1Y4IIWY4GNNZ0MWADGNUSGR2TW0U2NN0EVZOIHBLKCIXABW',
-  client_secret:'TYVKI2AHL3PRDLU4SPYROMJWZJ1QUHM3MRCFRM2SP3FWMJPI',
-  v: 20170814
-  },
-  success: function(data) {
-  //console.log(data);
-  var venue = data.response.venue;
-  //get the addresses
-  var address;
+  $.ajax({
+    url: "https://api.foursquare.com/v2/venues/" + cafe.fsid,
+    dataType: "json",
+    async: true,
+    data: {
+      client_id:'U1Y4IIWY4GNNZ0MWADGNUSGR2TW0U2NN0EVZOIHBLKCIXABW',
+      client_secret:'TYVKI2AHL3PRDLU4SPYROMJWZJ1QUHM3MRCFRM2SP3FWMJPI',
+      v: 20170814
+    },
+    success: function(data) {
+      //console.log(data);
+      var venue = data.response.venue;
+      //get the addresses
+      var address;
       if (venue.location.formattedAddress !== undefined) {
         address = venue.location.formattedAddress[0];
       } else {
         adress = "Address is not available";
       }
-  //console.log(address);
-  //add the content to the InfoWindow
-  var contentString = "<div class='address'>" + 'Address: '+ "<span class='info'> " + address + "</span></div>";
-  cafe.contentString(contentString);
-  },
-  //handle error from foursquare
-  error: function() {
-    window.alert("Sorry information not availablle from foursquare, try again later.");
-  }
-});
+      //console.log(address);
+      //add the content to the InfoWindow
+      var contentString = "<div class='address'>" + 'Address: '+ "<span class='info'> " + address + "</span></div>";
+      cafe.contentString(contentString);
+    },
+    //handle error from foursquare
+    error: function() {
+      window.alert("Sorry information not availablle from foursquare, try again later.");
+    }
+  });
 }
 var appViewModel = new AppViewModel();
 ko.applyBindings(appViewModel);
