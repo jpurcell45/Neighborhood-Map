@@ -135,10 +135,13 @@ function initMap() {
         //Change user input to upper case to do case sensitive search.
         var searchInput = self.userInput().toUpperCase();
         //If no search input display all myCafes
-        if (!searchInput) {
-          return self.myCafes();
-        }
-        else {
+        //if (!searchInput) {
+          //for(i = 0; i < markers.length; i++)  {
+            //marker.setVisible(true);
+          //}
+          //return self.myCafes();
+        //}
+        //else {
           //change names of locations to compare against to upper case for case sensitive search
           self.myCafes.name.toUpperCase();
           var myCafes = self.myCafes();
@@ -157,7 +160,7 @@ function initMap() {
             }
               return isInName;
           });
-        }
+
       });
       this.showCafes = function(myCafes) {
         google.maps.event.trigger(myCafes.marker, 'click');
