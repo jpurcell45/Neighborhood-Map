@@ -8,7 +8,8 @@ application also includes a searchable list that will filter
 and display only those places with the search string in them.
 The markers will bounce for 3 seconds when clicked and display
 some additional information about the place. Also when searching,
-only the markers for the places in the search will be visible.
+only the markers for the places in the search will be visible. The list
+view can be toggled.
 
 ###Sources
 
