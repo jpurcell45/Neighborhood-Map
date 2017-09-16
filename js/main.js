@@ -134,25 +134,12 @@ function initMap() {
       self.searchResults = ko.computed(function() {
         //Change user input to upper case to do case sensitive search.
         var searchInput = self.userInput().toUpperCase();
-        //If no search input display all myCafes
-        //if (!searchInput) {
-          //for(i = 0; i < markers.length; i++)  {
-            //marker.setVisible(true);
-          //}
-          //return self.myCafes();
-        //}
-        //else {
+        //If no search input display all myCafe
           //change names of locations to compare against to upper case for case sensitive search
           self.myCafes.name.toUpperCase();
           var myCafes = self.myCafes();
           //return items matching searchInput
           return ko.utils.arrayFilter(self.myCafes(), function(cafe) {
-            //console.log(cafe.name);
-            //if(cafe.name.toUpperCase().indexOf(searchInput) > -1) {
-              //cafe.marker.setVisible(true);
-            //} else {
-              //cafe.marker.setVisible(false);
-            //}
             var cafeName = cafe.name.toUpperCase();
             var isInName = cafeName.indexOf(searchInput) > -1; //true of false
             if (cafe.marker) {
@@ -160,7 +147,6 @@ function initMap() {
             }
               return isInName;
           });
-
       });
       this.showCafes = function(myCafes) {
         google.maps.event.trigger(myCafes.marker, 'click');
