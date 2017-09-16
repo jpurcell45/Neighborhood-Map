@@ -1,5 +1,27 @@
 //Neigborhood Map Project
 /*jshint loopfunc: true */
+var locations = [
+  //Places with foursquare i[
+    {
+      name: 'Brasserie Four',
+      fsid: '4b7c923ff964a520af9b2fe3'
+    },
+    {
+      name: 'Whitehouse-Crawford',
+      fsid: '4b63ec49f964a52045972ae3'
+    },
+    {
+      name: 'Saffron Mediterranean Kitchen',
+      fsid: '4b63e8d6f964a520b4962ae3'
+    },
+    {
+      name: 'Graze',
+      fsid: '4db2325504374b3c49722dde'
+    },
+    {
+      name: 'Gramercy Cellars',
+      fsid: '4da0a2abb521224bd070e1ed'}
+  ];
 var favPlaces = [{
     name: 'Brasserie Four',
     location: {
@@ -96,28 +118,7 @@ function initMap() {
   function mapError() {
     alert("There was an error retrieving the map from Google");
   }
-  var locations = [
-    //Places with foursquare i[
-      {
-        name: 'Brasserie Four',
-        fsid: '4b7c923ff964a520af9b2fe3'
-      },
-      {
-        name: 'Whitehouse-Crawford',
-        fsid: '4b63ec49f964a52045972ae3'
-      },
-      {
-        name: 'Saffron Mediterranean Kitchen',
-        fsid: '4b63e8d6f964a520b4962ae3'
-      },
-      {
-        name: 'Graze',
-        fsid: '4db2325504374b3c49722dde'
-      },
-      {
-        name: 'Gramercy Cellars',
-        fsid: '4da0a2abb521224bd070e1ed'}
-    ];
+
     //Implement viewmodel.
     var AppViewModel = function() {
       var self= this;
